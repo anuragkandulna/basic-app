@@ -59,7 +59,7 @@ update_python_packages() {
     source $ENV/bin/activate
 
     # Install the packages from requirements_3_12.txt
-    if [ -f "requirements.txt" ]; then
+    if [ -f $REQUIREMENTS_FILE ]; then
         pip install -r $REQUIREMENTS_FILE
         echo "Python packages installed from ${REQUIREMENTS_FILE} ..."
     else
