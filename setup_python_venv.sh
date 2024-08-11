@@ -18,10 +18,10 @@ check_python_installed() {
 
 # Function to create Python 3 virtual environment
 create_python_venv() {
-    Cleaning up local v-environment
+    # Cleaning up local virtual environment
     if [ -d $ENV ]; then
-        echo "Python Virtual environment ${ENV} already exist. Cleaning up the environment..."
-        exit 0
+        echo "Python Virtual environment ${ENV} already exist."
+        return 1
     fi
 
     # Creating a new environment
