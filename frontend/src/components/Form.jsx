@@ -13,20 +13,25 @@ function Form() {
     const user = { name, age };
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
+        const response = await fetch('http://127.0.0.1:5000/api/submit', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        });
 
-      const data = await response.json();
-      console.log('Success:', data);
+        const data = await response.json();
+        if (data.status === 'success') {
+            alert(`User ${data.name} (Age: ${data.age}) was submitted successfully!`);
+        } else {
+            alert('There was an error submitting the user data.');
+        }
+        
     } catch (error) {
-      console.error('Error:', error);
+        console.error('Error:', error);
     }
-    
+
   };
 
   return (
