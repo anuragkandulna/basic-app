@@ -55,17 +55,29 @@ update_python_packages() {
         exit 1
     fi
 
-    # Activate the virtual environment
+      # Activate the virtual environment
     source $ENV/bin/activate
+
+    # Check if the virtual environment is activated by showing the Python executable path
+    echo "Python executable used in virtual environment:"
+    which python3
+
+    # Check the location of pip
+    echo "Pip executable used in virtual environment:"
+    which pip3
 
     # Install the packages from requirements_3_12.txt
     if [ -f $REQUIREMENTS_FILE ]; then
-        pip install -r $REQUIREMENTS_FILE
+        pip3 install -r $REQUIREMENTS_FILE
         echo "Python packages installed from ${REQUIREMENTS_FILE} ..."
     else
         echo "${REQUIREMENTS_FILE} not found. Exiting now!"
         exit 1
     fi
+
+    # Show the currently installed packages in the virtual environment
+    echo "Currently installed packages in the virtual environment:"
+    pip3 list
 
     # Deactivate the python virtual environment
     deactivate
