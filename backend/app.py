@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+# CORS(app)  # This will enable CORS for all routes
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
 
 @app.route('/api/submit', methods=['POST'])
 def submit():
@@ -8,9 +11,9 @@ def submit():
     name = data.get('name')
     age = data.get('age')
 
-    # You can add logic to save the data to a database or process it here
     print(f'Name: {name} Age: {age}')
 
+    # Example: process the data or save it to a database
     response = {
         'status': 'success',
         'name': name,
