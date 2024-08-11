@@ -87,22 +87,9 @@ update_python_packages() {
 # ------------------------------------------ START HERE ----------------------------------------- #
 # Start python virtual environment creation with hidden dir .pyenv312
 ENV=".pyenv312"
-GIT_IGNORE=".gitignore"
 REQUIREMENTS_FILE="requirements_3_12.txt"
 
 # Invoke functions to do the respective task
 check_python_installed
 create_python_venv
 update_python_packages
-
-# Add ENV to .gitignore
-if grep -Fxq "${ENV}" $GIT_IGNORE
-then
-  echo "Adding ${ENV} to ${GIT_IGNORE} file..."
-  echo "" >> $GIT_IGNORE
-  echo "# Python virtual environment created by Test App" >> $GIT_IGNORE
-  echo "${ENV}/" >> $GIT_IGNORE
-  echo "Successfully added dir ${ENV} to file ${GIT_IGNORE}. Just commit the changes and push."
-else
-  echo "Python virtual environment dir ${ENV} already added to ${GIT_IGNORE} file!"
-fi
